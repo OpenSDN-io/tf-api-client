@@ -92,7 +92,7 @@ bool %s::JsonParse(const contrail_rapidjson::Value &parent) {
 
         static_fn = """
 bool %s::JsonParseProperty(const contrail_rapidjson::Value &parent,
-        auto_ptr<AutogenProperty> *resultp) {
+        std::unique_ptr<AutogenProperty> *resultp) {
     %s *ptr = new %s();
     resultp->reset(ptr);
     if (!ptr->JsonParse(parent)) {
@@ -168,7 +168,7 @@ bool %s::XmlParse(const xml_node &parent) {
 
         static_fn = """
 bool %s::XmlParseProperty(const xml_node &parent,
-        auto_ptr<AutogenProperty> *resultp) {
+        std::unique_ptr<AutogenProperty> *resultp) {
     %s *ptr = new %s();
     resultp->reset(ptr);
     if (!ptr->XmlParse(parent)) {
@@ -309,7 +309,7 @@ bool %s::XmlParse(const xml_node &parent) {
 
         static_fn = """
 bool %s::XmlParseProperty(const xml_node &parent,
-        auto_ptr<AutogenProperty> *resultp) {
+        std::unique_ptr<AutogenProperty> *resultp) {
     %s *ptr = new %s();
     resultp->reset(ptr);
     if (!ptr->XmlParse(parent)) {
@@ -371,7 +371,7 @@ bool %s::JsonParse(const contrail_rapidjson::Value &parent) {
 
         static_fn = """
 bool %s::JsonParseProperty(const contrail_rapidjson::Value &parent,
-        auto_ptr<AutogenProperty> *resultp) {
+        std::unique_ptr<AutogenProperty> *resultp) {
     return true;
 }
 """ % ctype.getName()

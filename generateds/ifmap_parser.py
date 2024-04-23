@@ -200,7 +200,7 @@ class IFMapGenProperty(object):
         fnname = '%s_ParseMetadata' % meta.getCppName()
         file.write('bool %s(\n' % fnname)
         file.write('        const pugi::xml_node &parent,\n')
-        file.write('        std::auto_ptr<AutogenProperty > *resultp) {\n')
+        file.write('        std::unique_ptr<AutogenProperty > *resultp) {\n')
 
 	if meta.getCType():
 	    file.write('    return autogen::%s::XmlParseProperty(parent, resultp);\n' %
@@ -239,7 +239,7 @@ class IFMapGenProperty(object):
         fnname = '%s_ParseJsonMetadata' % meta.getCppName()
         file.write('bool %s(\n' % fnname)
         file.write('        const contrail_rapidjson::Value &parent,\n')
-        file.write('        std::auto_ptr<AutogenProperty > *resultp) {\n')
+        file.write('        std::unique_ptr<AutogenProperty > *resultp) {\n')
 
         if meta.getCType():
             file.write(
@@ -297,7 +297,7 @@ class IFMapGenLinkAttr(object):
 
         if not meta.getCType():
             decl = """bool %s::ParseMetadata(const pugi::xml_node &parent,
-        std::auto_ptr<AutogenProperty> *resultp) {
+        std::unique_ptr<AutogenProperty> *resultp) {
     %sData *var = new %sData();
     resultp->reset(var);
 """ % (meta.getCppName(), meta.getCppName(), meta.getCppName())
@@ -320,7 +320,7 @@ class IFMapGenLinkAttr(object):
         if not meta.getCType():
             decl = """
 bool %s::ParseJsonMetadata(const contrail_rapidjson::Value &parent,
-        std::auto_ptr<AutogenProperty> *resultp) {
+        std::unqiue_ptr<AutogenProperty> *resultp) {
     %sData *data = new %sData();
     resultp->reset(data);
 """ % (meta.getCppName(), meta.getCppName(), meta.getCppName())
@@ -435,12 +435,12 @@ namespace autogen {
                 genr.GenerateJsonParser(self._JsonDecoderDict, file)
 
         parse_link_decl = """static bool ParseLinkMetadata(const xml_node &parent,
-    std::auto_ptr<AutogenProperty> *resultp) {
+    std::unique_ptr<AutogenProperty> *resultp) {
     return true;
 }
 
 static bool ParseJsonLinkMetadata(const contrail_rapidjson::Value &parent,
-    std::auto_ptr<AutogenProperty> *resultp) {
+    std::unique_ptr<AutogenProperty> *resultp) {
     return true;
 }
 
