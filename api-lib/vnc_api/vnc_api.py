@@ -5,9 +5,7 @@ from __future__ import absolute_import
 from future import standard_library
 standard_library.install_aliases()
 
-from builtins import str
-from builtins import object
-from six.moves import configparser
+import configparser
 import logging
 from collections import OrderedDict
 import requests
@@ -393,7 +391,7 @@ class VncApi(object):
                     setattr(self, '%s%s' % (object_type, oper_str),
                             bound_method)
 
-        cfg_parser = configparser.ConfigParser()
+        cfg_parser = configparser.ConfigParser(strict=False)
         try:
             cfg_parser.read(conf_file or
                             "/etc/contrail/vnc_api_lib.ini")
