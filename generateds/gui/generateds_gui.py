@@ -3,13 +3,11 @@
 from __future__ import print_function
 from future import standard_library
 standard_library.install_aliases()
-from builtins import str
-from builtins import object
-from six.moves import configparser
+
+import configparser
 import sys
 import os
 from optparse import OptionParser
-from xml.dom import minidom
 from xml.parsers import expat
 import subprocess
 import re
@@ -770,7 +768,7 @@ class ContentDialog(gtk.Dialog):
 #
 
 def capture_options(options):
-    config_parser = ConfigParser()
+    config_parser = configparser.ConfigParser(strict=False)
     config_parser.read([
         os.path.expanduser('~/.generateds_gui.ini'),
         './generateds_gui.ini',
