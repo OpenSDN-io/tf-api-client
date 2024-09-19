@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
     python %prog [options] <in_schema.xsd>  <out_schema.xsd>
 Synopsis:
@@ -13,10 +13,6 @@ Examples:
 #
 # Imports
 
-from future import standard_library
-standard_library.install_aliases()
-from builtins import input
-from builtins import object
 import sys
 import os
 import urllib.request, urllib.error, urllib.parse

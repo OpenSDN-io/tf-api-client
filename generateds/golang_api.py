@@ -1,9 +1,7 @@
-from __future__ import print_function
 #
 # Copyright (c) 2013 Juniper Networks, Inc. All rights reserved.
 #
 
-from builtins import object
 import os
 import re
 import sys

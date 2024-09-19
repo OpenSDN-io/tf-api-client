@@ -4,7 +4,6 @@
 # member_specs_test.py
 #
 
-from __future__ import print_function
 import sys
 import member_specs_api as supermod
 import member_specs_upper

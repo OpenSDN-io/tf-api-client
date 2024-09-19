@@ -4,8 +4,6 @@
 # Generated Mon Aug 18 17:12:21 2003 by generateDS.py.
 #
 
-from __future__ import print_function
-from builtins import range
 import sys
 from xml.dom import minidom
 

@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 
-from __future__ import print_function
-from builtins import range
-from builtins import object
 import sys
-import getopt
 from xml.dom import minidom
 from xml.dom import Node
 #import yaml

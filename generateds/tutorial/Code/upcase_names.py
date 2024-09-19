@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import sys
 import upcase_names_appl as appl
 
@@ -25,5 +23,3 @@ def main():
 
 
 main()
-
-

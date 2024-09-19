@@ -9,21 +9,14 @@ Examples:
     python %prog -f myschema.xsd newschema.xsd
     cat infile.xsd | python %prog > outfile.xsd
 """
-from __future__ import print_function
 
 #
 # Imports
 
-from future import standard_library
-standard_library.install_aliases()
-from builtins import input
-from builtins import object
 import sys
 import os
 import urllib.request, urllib.error, urllib.parse
-import ftplib
 import copy
-import types
 from optparse import OptionParser, Values
 import itertools
 from lxml import etree

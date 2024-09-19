@@ -1,6 +1,5 @@
 # coding:utf-8
 # Simple utility to convert json schema using jinja2 template
-from __future__ import print_function
 import argparse
 import glob
 import os

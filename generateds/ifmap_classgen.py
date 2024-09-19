@@ -6,10 +6,9 @@
 Generate the class definition corresponding to a given IFMap DB object.
 """
 
-from builtins import object
 from type_classgen import TypeClassGenerator, TypeImplGenerator
-from ifmap_global import CppTypeMap, GetModuleName
-from ifmap_model import IFMapIdentifier, IFMapProperty, IFMapLink, IFMapLinkAttr, MemberInfo, SimpleTypeWrapper
+from ifmap_global import GetModuleName
+from ifmap_model import IFMapLinkAttr, SimpleTypeWrapper
 
 class IFMapGenBase(object):
     def __init__(self):

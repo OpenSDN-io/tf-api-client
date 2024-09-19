@@ -4,11 +4,7 @@
 # Generated Mon Aug 18 17:09:37 2003 by generateDS.py.
 #
 
-from __future__ import print_function
-from builtins import range
-from builtins import object
 import sys
-import getopt
 from xml.dom import minidom
 from xml.dom import Node
 

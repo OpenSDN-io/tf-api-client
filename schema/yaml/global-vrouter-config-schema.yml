@@ -74,6 +74,9 @@ schema:
       wrapper: true
     vxlan_network_identifier_mode:
       $ref: types.json#/definitions/VxlanNetworkIdentifierModeType
+      description: Method of allocation of VxLAN VNI(s). Set at provision time and
+        cannot be changed.     configured = VxLAN VNI is given by user when virtual
+        network is configured.     automatic = System will allocate VxLAN VNI automatically.
       operations: CRUD
       presence: optional
   required: []

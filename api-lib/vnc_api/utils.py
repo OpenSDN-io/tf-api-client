@@ -1,8 +1,6 @@
-from builtins import str
 import os
 import sys
 import errno
-import logging
 from functools import reduce
 
 

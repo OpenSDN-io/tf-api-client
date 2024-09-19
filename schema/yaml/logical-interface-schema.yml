@@ -29,6 +29,9 @@ schema:
       presence: optional
     logical_interface_type:
       $ref: types.json#/definitions/LogicalInterfaceType
+      description: Logical interface type can be L2 or L3.  L2 - only L2 service is
+        provided, MAC learning is supported.  L3 - only L3 service is supported and
+        MAC learning is not supported.
       operations: CRUD
       presence: optional
     logical_interface_vlan_tag:

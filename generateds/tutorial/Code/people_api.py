@@ -5,15 +5,7 @@
 # Generated Fri Sep 23 15:04:32 2011 by generateDS.py version 2.6b.
 #
 
-from __future__ import print_function
-from future import standard_library
-standard_library.install_aliases()
-from builtins import str
-from builtins import range
-from past.builtins import basestring
-from builtins import object
 import sys
-import getopt
 import re as re_
 
 etree_ = None
@@ -203,7 +195,7 @@ def showIndent(outfile, level):
 def quote_xml(inStr):
     if not inStr:
         return ''
-    s1 = (isinstance(inStr, basestring) and inStr or
+    s1 = (isinstance(inStr, str) and inStr or
           '%s' % inStr)
     s1 = s1.replace('&', '&amp;')
     s1 = s1.replace('<', '&lt;')
@@ -211,7 +203,7 @@ def quote_xml(inStr):
     return s1
 
 def quote_attrib(inStr):
-    s1 = (isinstance(inStr, basestring) and inStr or
+    s1 = (isinstance(inStr, str) and inStr or
           '%s' % inStr)
     s1 = s1.replace('&', '&amp;')
     s1 = s1.replace('<', '&lt;')

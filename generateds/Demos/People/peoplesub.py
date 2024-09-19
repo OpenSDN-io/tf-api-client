@@ -4,10 +4,6 @@
 # Generated Tue Feb  1 14:34:02 2011 by generateDS.py version 2.5a.
 #
 
-from __future__ import print_function
-from future import standard_library
-standard_library.install_aliases()
-from builtins import range
 import sys
 
 import peoplesup as supermod

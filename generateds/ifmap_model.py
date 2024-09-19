@@ -2,8 +2,6 @@
 # Copyright (c) 2013 Juniper Networks, Inc. All rights reserved.
 #
 
-from past.builtins import basestring
-from builtins import object
 import logging
 import re
 import textwrap
@@ -283,21 +281,19 @@ class IFMapMetadata(IFMapObject):
     def getOperations(self):
         return self._idl_info[0].operations
 
+    def _formatDesc(self, desc, width):
+        if isinstance(desc, bytes):
+            desc = desc.decode()
+        if isinstance(desc, str) and width is not None:
+            return textwrap.wrap(desc, width, break_long_words=False)
+        return desc
+
     def getDescription(self, width=None):
         desc = self._idl_info[0].description
-        if width is None and isinstance(desc, basestring):
-            return self._idl_info[0].description
+        if isinstance(desc, list):
+            return self._formatDesc(' '.join(desc), width)
 
-        if isinstance(desc, basestring):
-            return textwrap.wrap(desc, width, break_long_words=False)
-        elif isinstance(desc, list):
-            desc_lines = []
-            for d_line in desc:
-                desc_lines.extend(textwrap.wrap(
-                                  d_line, width, break_long_words=False))
-            return desc_lines
-        else:
-            return desc
+        return self._formatDesc(desc, width)
 
     def Resolve(self, xsdTypeDict, cTypeDict):
         pass
@@ -440,6 +436,7 @@ class IFMapLinkAttr(IFMapMetadata):
         return getCppType(self._xelement.getType())
 
     def Resolve(self, xsdTypeDict, cTypeDict):
+        xtypename = self.getXsdType()
         if self._xelement.isComplex():
             self._complexType = ComplexTypeLocate(xsdTypeDict, cTypeDict,
                                                   self.getXsdType())

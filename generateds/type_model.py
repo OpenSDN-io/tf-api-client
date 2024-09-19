@@ -2,11 +2,10 @@
 # Copyright (c) 2013 Juniper Networks, Inc. All rights reserved.
 #
 
-from builtins import object
 import logging
 import re
 
-from ifmap_global import getCppType, getJavaType, IsGeneratedType, CamelCase
+from ifmap_global import getCppType, getJavaType
 
 
 KEYWORDS = {'static' : '_static'}

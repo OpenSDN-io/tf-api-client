@@ -164,6 +164,9 @@ schema:
       operations: CRUD
       presence: optional
     multi_policy_service_chains_enabled:
+      description: Allow multiple service chains within same two networks based on
+        network policy. Current limitation is that both networks must reside within
+        cluster, except when right most service is NAT.
       operations: CRUD
       presence: optional
       type: boolean

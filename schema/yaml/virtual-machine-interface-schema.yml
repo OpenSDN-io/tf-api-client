@@ -45,7 +45,9 @@ references:
     operations: CRUD
     presence: optional
   port_tuple:
-    description: ''
+    description: Ordered set of references to the interfaces in this port tuple. Order
+      is same as specified in the service interface. example (left, right, management,
+      other1).
     operations: CRUD
     presence: optional
   qos_config:

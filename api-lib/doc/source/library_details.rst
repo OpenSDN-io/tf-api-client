@@ -108,7 +108,7 @@ Online documentation of the vnc_api module can be found by:
     NAME
         vnc_api.vnc_api
     FILE
-        /usr/lib/python2.7/site-packages/vnc_api/vnc_api.py
+        /usr/lib/python3.6/site-packages/vnc_api/vnc_api.py
     DESCRIPTION
         This is the main module in VNS Config API library. It handles connection to API server,
         exposes configuration elements as objects and allows for manipulating objects locally

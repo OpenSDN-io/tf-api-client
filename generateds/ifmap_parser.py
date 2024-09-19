@@ -14,9 +14,8 @@ There are 3 scenarios:
   - Link meta with content: creates an object;
 """
 
-from builtins import object
 from ifmap_global import GetModuleName
-from ifmap_model import IFMapIdentifier, IFMapProperty, IFMapLink, IFMapLinkAttr, SimpleTypeWrapper
+from ifmap_model import IFMapProperty, IFMapLink, IFMapLinkAttr, SimpleTypeWrapper
 from type_parser import TypeParserGenerator
 
 class IFMapGenIdentity(object):
@@ -202,10 +201,10 @@ class IFMapGenProperty(object):
         file.write('        const pugi::xml_node &parent,\n')
         file.write('        std::unique_ptr<AutogenProperty > *resultp) {\n')
 
-	if meta.getCType():
-	    file.write('    return autogen::%s::XmlParseProperty(parent, resultp);\n' %
-		       meta.getCTypename())
-	else:
+        if meta.getCType():
+            file.write('    return autogen::%s::XmlParseProperty(parent, resultp);\n' %
+		               meta.getCTypename())
+        else:
             indent = ' ' * 4
             info = meta.getMemberInfo()
 
@@ -506,7 +505,7 @@ IFMapObject* %(class)sAgentParse(const xml_node &node, DB *db, std::string *id_n
 }
 
 """ % {'class': ident.getCppName(), 'nodename': ident.getName() } 
-      	    file.write (cdecl)
+            file.write(cdecl)
 
         for ident in list(MetaDict.values()):
             if not type(ident) is IFMapLinkAttr:
@@ -529,7 +528,7 @@ IFMapObject* %(class)sAgentParse(const xml_node &node, DB *db, std::string *id_n
 }
 
 """ % {'class': ident.getCppName(), 'nodename': ident.getName() } 
-      	    file.write (cdecl)
+            file.write(cdecl)
 
         file.write('void %s_Agent_ParserInit(DB *db, IFMapAgentParser *xparser) {\n' %
                 module_name)

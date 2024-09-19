@@ -5,7 +5,10 @@ id: port_tuple
 parents:
   service_instance:
     derived: true
-    description: ''
+    description: Port tuples are ordered set of interfaces that represent a service
+      virtual machine or physical device , which is part of this service instance.
+      Order of interfaces in port tuple is same as specified in the service template.
+      example SI = [(Left, Right, Management), (L, R, M), ..., (L, R, M)].
     operations: CRUD
     presence: optional
 plural: port_tuples

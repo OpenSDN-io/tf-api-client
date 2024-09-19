@@ -1,11 +1,7 @@
-from __future__ import print_function
-from builtins import str
-from builtins import object
 import os
 import time
 import logging
 import textwrap
-from pprint import pformat
 from collections import OrderedDict
 
 def escape_string(instring):
@@ -54,9 +50,6 @@ class TypeGenerator(object):
         outfile.write('"""\n')
         outfile.write("This module defines the classes for types defined in :doc:`vnc_cfg.xsd`\n")
         outfile.write('"""\n')
-        outfile.write("from __future__ import absolute_import\n")
-        outfile.write("from builtins import map\n")
-        outfile.write("from builtins import str\n")
         outfile.write("import json\n")
         outfile.write("from .generatedssuper import *\n")
         self._generateFromTree(wrt, self._PGenr.prefix, elements, processed)
@@ -897,7 +890,6 @@ class PyGenerator(object):
 
     def generateElemDoc(self, wrt, element):
         s2 = ' '.join(element.documentation.strip().split())
-        s2 = s2.encode('utf-8')
         s2 = textwrap.fill(s2, width=68, subsequent_indent='    ')
         if s2[0] == '"' or s2[-1] == '"':
             s2 = '    """ %s """\n' % (s2, )

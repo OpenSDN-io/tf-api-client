@@ -1,10 +1,7 @@
-from __future__ import print_function
 #
 # Copyright (c) 2013 Juniper Networks, Inc. All rights reserved.
 #
 
-from builtins import str
-from builtins import object
 import idl_parser
 from ifmap_model import IFMapIdentifier, IFMapMetadata, ElementXsdType
 from ifmap_classgen import IFMapClassGenerator, IFMapImplGenerator

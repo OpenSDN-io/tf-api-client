@@ -4,7 +4,14 @@ extends:
 id: service_appliance_set
 parents:
   global_system_config:
-    description: ''
+    description: Service appliance set is the collection of service appliances. This
+      collection is used as a provider in loadbalancer pool config. Algorithm to distribute/choose
+      one appliance over other can be built while creating loadbalancer pool. By default,
+      system will create service-appliance-set with name "opencontrail". This is the
+      default loadbalancer provider for pools in Contrail. This provider is based
+      on "ha-proxy".Service appliance set has following attribute -      Driver to
+      load for provisioning the appliance       Service appliance properties - HA
+      mode.
     operations: CRUD
     presence: optional
 plural: service_appliance_sets

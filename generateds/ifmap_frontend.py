@@ -2,9 +2,6 @@
 # Copyright (c) 2013 Juniper Networks, Inc. All rights reserved.
 #
 
-from builtins import str
-from builtins import range
-from builtins import object
 from ifmap_global import CamelCase
 from ifmap_model import IFMapIdentifier, IFMapProperty, IFMapLink, \
     IFMapLinkAttr, AmbiguousParentType
@@ -103,8 +100,6 @@ class IFMapApiGenerator(object):
         write(gen_file, "This module defines the classes for every configuration element managed by the system")
         write(gen_file, '"""')
         write(gen_file, "")
-        write(gen_file, "from builtins import range")
-        write(gen_file, "from builtins import object")
         write(gen_file, "try:")
         write(gen_file, "    from cfgm_common.exceptions import AmbiguousParentError")
         write(gen_file, "except ImportError:")
@@ -1516,8 +1511,6 @@ class IFMapApiGenerator(object):
         write(self.gen_file, "# AUTO-GENERATED file from %s. Do Not Edit!" \
               %(self.__class__.__name__))
         write(self.gen_file, "")
-        write(self.gen_file, "from builtins import str")
-        write(self.gen_file, "from builtins import range")
         write(self.gen_file, "from contrail_heat.resources import contrail")
         write(self.gen_file, "try:")
         write(self.gen_file, "    from heat.common.i18n import _")
@@ -1569,9 +1562,8 @@ class IFMapApiGenerator(object):
 
     def _build_heat_refs(self):
         for ref_name in self.cls.ref_fields:
-
             ref_type = self.cls.ref_field_types[ref_name][1]
-            skip = False if ref_type is 'None' else True
+            skip = ref_type != 'None'
             desc = self.cls.ref_field_types[ref_name][3]
             ref_desc = desc[0] if desc else None
             self._make_heat_prop_list(self.ref_list, ref_name, 'string', None,
@@ -1736,7 +1728,7 @@ class IFMapApiGenerator(object):
             write(self.gen_file, "%sraise Exception(_('%%s') %% str(e))" %(" "*tabs))
             tabs = tabs-4
             write(self.gen_file, "%sobj_0.add_%s(ref_obj%s)" %(" "*tabs, ref_name.replace("_refs", ""), attr_str))
-	    write(self.gen_file, "")
+            write(self.gen_file, "")
             tabs = tabs-4
             if not attr_str:
                 tabs = tabs-4
@@ -1753,7 +1745,7 @@ class IFMapApiGenerator(object):
 
             tabs = 8
             write(self.gen_file, "%s# reference to %s" %(" "*tabs, ref_name))
-	    ref_attr_data = False
+            ref_attr_data = False
             if not ref_name.endswith('_refs'):
                 ref_attr_data = True
                 ref_name = ref_name+"_refs"
@@ -2157,7 +2149,6 @@ class IFMapApiGenerator(object):
         write(gen_file, "# AUTO-GENERATED file from %s. Do Not Edit!" \
               %(self.__class__.__name__))
         write(gen_file, "")
-        write(gen_file, "from __future__ import absolute_import")
         write(gen_file, "from . import cfixture")
         write(gen_file, "from vnc_api import vnc_api")
         write(gen_file, "try:")
@@ -2416,8 +2407,6 @@ class IFMapApiGenerator(object):
         write(gen_file, "# AUTO-GENERATED file from %s. Do Not Edit!" \
               %(self.__class__.__name__))
         write(gen_file, "")
-        write(gen_file, "from builtins import str")
-        write(gen_file, "from builtins import object")
         write(gen_file, "import abc")
         write(gen_file, "from future.utils import with_metaclass")
         write(gen_file, "")

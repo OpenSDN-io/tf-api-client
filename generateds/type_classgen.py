@@ -1,7 +1,6 @@
 #
 # Copyright (c) 2013 Juniper Networks, Inc. All rights reserved.
 #
-from builtins import object
 from ifmap_global import GetModuleName
 
 class TypeClassGenerator(object):

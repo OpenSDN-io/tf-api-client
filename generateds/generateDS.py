@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 """
 Synopsis:
     Generate Python classes from XML Schema definition.
@@ -73,8 +73,6 @@ Options:
     --version                Print version and exit.
 
 """
-from __future__ import print_function
-
 
 ## LICENSE
 
@@ -100,23 +98,15 @@ from __future__ import print_function
 ## SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-from future import standard_library
-standard_library.install_aliases()
-from builtins import input
-from builtins import range
-from builtins import object
 import sys
 import os.path
-import time
 import getopt
 import urllib.request, urllib.error, urllib.parse
 import imp
 from xml.sax import handler, make_parser
-import xml.sax.xmlreader
 import logging
 import keyword
 import io
-import textwrap
 from cctype import TypeGenerator
 from ccmap import IFMapGenerator
 from ccsvc import ServiceGenerator
@@ -401,7 +391,7 @@ def showIndent(outfile, level, pretty_print=True):
 def quote_xml(inStr):
     if not inStr:
         return ''
-    s1 = (isinstance(inStr, basestring) and inStr or
+    s1 = (isinstance(inStr, str) and inStr or
           '%%s' %% inStr)
     s1 = s1.replace('&', '&amp;')
     s1 = s1.replace('<', '&lt;')
@@ -409,7 +399,7 @@ def quote_xml(inStr):
     return s1
 
 def quote_attrib(inStr):
-    s1 = (isinstance(inStr, basestring) and inStr or
+    s1 = (isinstance(inStr, str) and inStr or
           '%%s' %% inStr)
     s1 = s1.replace('&', '&amp;')
     s1 = s1.replace('<', '&lt;')
@@ -846,12 +836,12 @@ if __name__ == '__main__':
             else:
                 reply = eval(input('File %s exists.  Overwrite? (y/n): ' % outFileName))
                 if reply == 'y':
-                    outFile = file(outFileName, 'w')
+                    outFile = open(outFileName, 'w')
         else:
             if (outAppend):
-                outFile = file(outFileName, 'a')
+                outFile = open(outFileName, 'a')
             else:
-                outFile = file(outFileName, 'w')
+                outFile = open(outFileName, 'w')
         return outFile
 
     def mapName(self, oldName):

@@ -1,9 +1,6 @@
 #
 # Copyright (c) 2013 Juniper Networks, Inc. All rights reserved.
 #
-from builtins import range
-from past.builtins import basestring
-from builtins import object
 import re
 import sys
 
@@ -25,7 +22,7 @@ def showIndent(outfile, level, pretty_print=False):
 def quote_xml(inStr):
     if not inStr:
         return ''
-    s1 = (isinstance(inStr, basestring) and inStr or '%s' % inStr)
+    s1 = (isinstance(inStr, str) and inStr or '%s' % inStr)
     if _XML_ESCAPE_SEARCH_PATTERN(s1):
         return s1.replace('&', r'&amp;')\
                  .replace('<', r'&lt;')\
@@ -34,7 +31,7 @@ def quote_xml(inStr):
 
 
 def quote_attrib(inStr):
-    s1 = (isinstance(inStr, basestring) and inStr or '%s' % inStr)
+    s1 = (isinstance(inStr, str) and inStr or '%s' % inStr)
     if _XML_ESCAPE_SEARCH_PATTERN(s1):
         s1 = s1.replace('&', r'&amp;')\
                .replace('<', r'&lt;')\

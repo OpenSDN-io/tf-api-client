@@ -4,10 +4,6 @@
 # Generated  by generateDS.py.
 #
 
-from __future__ import print_function
-from future import standard_library
-standard_library.install_aliases()
-from builtins import range
 import sys
 
 import people_procincl2_sup as supermod

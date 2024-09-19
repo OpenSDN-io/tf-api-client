@@ -1,11 +1,7 @@
-from __future__ import print_function
 #
 # Copyright (c) 2013 Juniper Networks, Inc. All rights reserved.
 #
 
-from builtins import str
-from builtins import range
-from builtins import object
 import os
 import re
 
@@ -118,9 +114,9 @@ import net.juniper.contrail.api.ApiPropertyBase;
             for member in ctype.getDataMembers()[param_end:]:
                 default = 'null'
                 if member.default:
-                    if member.jtypename is 'Boolean':
+                    if member.jtypename == 'Boolean':
                         default = member.default
-                    elif member.jtypename is 'String':
+                    elif member.jtypename == 'String':
                         default = quoted(member.default)
                     elif member.jtypename in ['Integer', 'Long']:
                         default = str(member.default)

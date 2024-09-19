@@ -58,6 +58,8 @@ schema:
       presence: optional
     data_center_interconnect_mode:
       $ref: types.json#/definitions/DataCenterInterconnectModes
+      description: Data Center InterConnect modes can be l2 or l3.  l2 - DCI mode
+        l2 stretch.  l3 - DCI mode l3 stretch.
       operations: CRUD
       presence: optional
     data_center_interconnect_type:

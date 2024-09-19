@@ -26,15 +26,9 @@
 
 
 
-from __future__ import generators   # only needed for Python 2.2
-from __future__ import print_function
-
-from builtins import input
-from builtins import range
-from builtins import object
 import sys, os.path
 import getopt
-from xml.sax import saxexts, saxlib, saxutils
+from xml.sax import saxexts
 from xml.sax import handler
 
 

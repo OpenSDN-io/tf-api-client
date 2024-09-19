@@ -6,11 +6,9 @@ Parse IDL statements embedded in a XML schema file.
 Copyright (c) 2013 Contrail Systems. All rights reserved.
 """
 
-from builtins import object
 import logging
 import os
 import re
-import string
 import sys
 
 class IDLParser(object):
@@ -53,7 +51,7 @@ class IDLParser(object):
     def Parse(self, infile):
         xml_comment = re.compile(r'<!--\s*#IFMAP-SEMANTICS-IDL(.*?)-->',
                                  re.DOTALL)
-        file_matches = xml_comment.findall(infile.read())
+        file_matches = xml_comment.findall(infile.read().decode())
         # Remove newline, split at stmt boundary
         matches = [re.sub('\n', '', match).split(';') for match in file_matches]
         for statements in matches:
