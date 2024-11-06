@@ -2408,10 +2408,9 @@ class IFMapApiGenerator(object):
               %(self.__class__.__name__))
         write(gen_file, "")
         write(gen_file, "import abc")
-        write(gen_file, "from future.utils import with_metaclass")
         write(gen_file, "")
 
-        write(gen_file, "class ConnectionDriverBase(with_metaclass(abc.ABCMeta, object)):")
+        write(gen_file, "class ConnectionDriverBase(metaclass=abc.ABCMeta):")
         write(gen_file, '    """')
         write(gen_file, "    This class provides type specific methods to create,")
         write(gen_file, "    read, update, delete and list objects from the server")
