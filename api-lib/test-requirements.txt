@@ -2,6 +2,5 @@ python-subunit
 testrepository
 flexmock
 coverage
-pyaml
 httpretty==0.8.10
 junitxml
