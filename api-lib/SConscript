@@ -94,10 +94,7 @@ sdist_depends.extend(generated_rule)
 sdist_depends.extend(setup_sources_rules)
 sdist_depends.extend(doc_sources_rules)
 
-version_file_path = File(repo_top + '/base/version.info').abspath
-with open(version_file_path, 'r') as f:
-    version = f.read().strip('\n').strip('\t')
-sdist_gen = env.Command('dist/contrail-api-client-{}.tar.gz'.format(version),
+sdist_gen = env.Command('dist/contrail-api-client-0.1.dev0.tar.gz',
                         'setup.py', cd_cmd + 'python3 setup.py sdist')
 
 env.Default(sdist_gen)
@@ -114,16 +111,11 @@ def SymLink(target, source, env):
     os.symlink(os.path.abspath(str(source[0])), os.path.abspath(str(target[0])))
 
 if 'install' in BUILD_TARGETS:
-    install_cmd = env.Command(
+    install_whl_cmd = env.Command(
         None, 'setup.py',
-        cd_cmd + 'python3 setup.py install %s' % env['PYTHON_INSTALL_OPT'])
-    env.Depends(install_cmd, sdist_depends)
-    env.Alias('install', install_cmd)
-
-    install_root = GetOption('install_root')
-    if install_root is None:
-        install_root = ''
-    env.Alias('install', env.Install(install_root + '/opt/opensdn/pip/api-lib/', Entry(repo_top + '/api-lib/requirements.txt')))
+        cd_cmd + 'python3 setup.py bdist_wheel --dist-dir /pip')
+    env.Depends(install_whl_cmd, sdist_depends)
+    env.Alias('install', install_whl_cmd)
 
 env.Alias('install',
     env.Install(env['INSTALL_CONF'], 'etc/contrail/vnc_api_lib.ini'))
