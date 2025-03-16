@@ -7,7 +7,6 @@ include django/gends_extract_simple_types.py
 include django/gends_generate_django.py
 include django/generatedssuper.py
 include process_includes.py
-include generate_coverage.py
 include generateDS.html
 include gends_user_methods.py
 include Demos/People/people.xsd

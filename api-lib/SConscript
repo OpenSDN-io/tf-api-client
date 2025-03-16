@@ -37,7 +37,6 @@ setup_sources = [
     'doc',
     'etc',
     'vnc_api',
-    '.coveragerc',
     '.pylintrc',
     '.stestr.conf',
     'MANIFEST.in',
