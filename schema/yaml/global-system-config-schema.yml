@@ -34,6 +34,13 @@ schema:
       operations: CRUD
       presence: optional
       type: boolean
+    bgp_all_tags_are_global:
+      description: 'Accept all tags ignoring originating AS. Requires tags and their ids
+        to be syned by external tool or natulrally by using the same config DB (e.g
+        subcluster scenario).'
+      operations: CRUD
+      presence: optional
+      type: boolean
     bgpaas_parameters:
       $ref: types.json#/definitions/BGPaaServiceParametersType
       description: BGP As A Service Parameters configuration

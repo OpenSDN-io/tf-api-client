@@ -1118,6 +1118,11 @@ targetNamespace="http://www.contrailsystems.com/2012/VNC-CONFIG/0">
      Property('bgp-always-compare-med', 'global-system-config', 'optional', 'CRUD',
               'Always compare MED even if paths are received from different ASes.') -->
 
+<xsd:element name="bgp-all-tags-are-global" type="xsd:boolean"/>
+<!--#IFMAP-SEMANTICS-IDL
+     Property('bgp-all-tags-are-global', 'global-system-config', 'optional', 'CRUD',
+              'Accept all tags ignoring originating AS. Requires tags and their ids to be syned by external tool or natulrally by using the same config DB (e.g subcluster scenario).') -->
+
 <xsd:element name="rd-cluster-seed" type="RdClusterSeedType"/>
 <!--#IFMAP-SEMANTICS-IDL
      Property('rd-cluster-seed', 'global-system-config', 'optional', 'CRUD',
