@@ -29,15 +29,15 @@ schema:
         but can be changed to 32 bits by setting enable-4byte-as.
       operations: CRUD
       presence: required
-    bgp_always_compare_med:
-      description: Always compare MED even if paths are received from different ASes.
+    bgp_all_tags_are_global:
+      description: Accept all tags ignoring originating AS. Requires tags and their
+        ids to be syned by external tool or natulrally by using the same config DB
+        (e.g subcluster scenario).
       operations: CRUD
       presence: optional
       type: boolean
-    bgp_all_tags_are_global:
-      description: 'Accept all tags ignoring originating AS. Requires tags and their ids
-        to be syned by external tool or natulrally by using the same config DB (e.g
-        subcluster scenario).'
+    bgp_always_compare_med:
+      description: Always compare MED even if paths are received from different ASes.
       operations: CRUD
       presence: optional
       type: boolean
