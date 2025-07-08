@@ -92,6 +92,10 @@ xsd:targetNamespace="http://www.contrailsystems.com/bgp-l3vpn-unicast-cfg.xsd">
     </xsd:restriction>
 </xsd:simpleType>
 
+<xsd:complexType name="PeerSourceType">
+     <xsd:element name="peer" type="xsd:string" maxOccurs="unbounded"/>
+</xsd:complexType>
+
 <xsd:complexType name="EntryType">
     <xsd:all>
         <xsd:element name="nlri" type="IPAddressType"/>
@@ -99,6 +103,7 @@ xsd:targetNamespace="http://www.contrailsystems.com/bgp-l3vpn-unicast-cfg.xsd">
         <xsd:element name="version" type="xsd:integer"/>
         <xsd:element name="virtual-network" type="xsd:string"/>
         <xsd:element name="mobility" type="MobilityType"/>
+        <xsd:element name="peers" type="PeerSourceType"/>
         <!-- sequence-number is deprecated in favor of mobility -->
         <xsd:element name="sequence-number" type="xsd:integer"/>
         <xsd:element name="security-group-list" type="SecurityGroupListType"/>

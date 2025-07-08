@@ -62,6 +62,10 @@ xsd:targetNamespace="http://www.contrailsystems.com/xmpp-enet-cfg.xsd">
     <xsd:attribute name="seqno" type="xsd:integer"/>
 </xsd:complexType>
 
+<xsd:complexType name="EnetPeerSourceType">
+     <xsd:element name="peer" type="xsd:string" maxOccurs="unbounded"/>
+</xsd:complexType>
+
 <xsd:complexType name="EnetEntryType">
     <xsd:all>
         <xsd:element name="nlri" type="EnetAddressType"/>
@@ -69,6 +73,7 @@ xsd:targetNamespace="http://www.contrailsystems.com/xmpp-enet-cfg.xsd">
         <xsd:element name="olist" type="EnetOlistType"/>
         <xsd:element name="virtual-network" type="xsd:string"/>
         <xsd:element name="mobility" type="EnetMobilityType"/>
+        <xsd:element name="peers" type="EnetPeerSourceType"/>
         <!-- sequence-number is deprecated in favor of mobility -->
         <xsd:element name="sequence-number" type="xsd:integer"/>
         <xsd:element name="security-group-list" type="EnetSecurityGroupListType"/>
