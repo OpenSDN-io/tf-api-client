@@ -59,9 +59,19 @@ schema:
         L2-L3 is default.
       operations: CRUD
       presence: optional
+    global_max_vmi_flows:
+      $ref: types.json#/definitions/GlobalMaxVmiFlows
+      description: Limits the flows number per a virtual machine interface
+      operations: CRUD
+      presence: optional
     linklocal_services:
       $ref: types.json#/definitions/LinklocalServicesTypes
       description: Global services provided on link local subnet to the virtual machines.
+      operations: CRUD
+      presence: optional
+    max_vm_flows_percent:
+      $ref: types.json#/definitions/MaxVmFlowsPercent
+      description: Limit the number of flows per a VM
       operations: CRUD
       presence: optional
     port_translation_pools:

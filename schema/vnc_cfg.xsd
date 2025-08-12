@@ -1366,6 +1366,37 @@ targetNamespace="http://www.contrailsystems.com/2012/VNC-CONFIG/0">
      Property('encryption-mode', 'global-vrouter-config', 'optional', 'CRUD',
               'Enable encryption mode') -->
 
+<xsd:simpleType name="GlobalMaxVmiFlows">
+    <xsd:restriction base="xsd:integer">
+        <xsd:minInclusive value="0"/>
+        <xsd:maxInclusive value="2147483647"/>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:element name="global-max-vmi-flows" type="GlobalMaxVmiFlows" default="0"/>
+<!--#IFMAP-SEMANTICS-IDL
+     Property('global-max-vmi-flows', 'global-vrouter-config', 'optional', 'CRUD',
+              'Limits the flows number per a virtual machine interface') -->
+
+<xsd:simpleType name="MaxVmFlowsPercent">
+    <xsd:restriction base="xsd:integer">
+        <xsd:minInclusive value="0"/>
+        <xsd:maxInclusive value="100"/>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:element name="max-vm-flows-percent" type="MaxVmFlowsPercent" default="0"/>
+<!--#IFMAP-SEMANTICS-IDL
+     Property('max-vm-flows-percent', 'global-vrouter-config', 'optional', 'CRUD',
+              'Limit the number of flows per a VM') -->
+
+<xsd:complexType name="EncryptionTunnelEndpoint">
+    <xsd:all>
+        <xsd:element name="tunnel-remote-ip-address" type="IpAddressType"
+             required='true' operation='CRUD' description='Tunnel endpoint remote address'/>
+    </xsd:all>
+</xsd:complexType>
+
 <xsd:complexType name="EncryptionTunnelEndpoint">
     <xsd:all>
         <xsd:element name="tunnel-remote-ip-address" type="IpAddressType"

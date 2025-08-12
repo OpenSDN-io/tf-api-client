@@ -1384,6 +1384,11 @@ definitions:
     - l2
     - l3
     type: string
+  GlobalMaxVmiFlows:
+    default: '0'
+    maximum: 2147483647
+    minimum: 0
+    type: integer
   GracefulRestartParametersType:
     properties:
       bgp_helper_enable:
@@ -2102,6 +2107,11 @@ definitions:
     type: object
   MaxFlowsType:
     maximum: 4294967296
+    minimum: 0
+    type: integer
+  MaxVmFlowsPercent:
+    default: '0'
+    maximum: 100
     minimum: 0
     type: integer
   MirrorActionType:
