@@ -1,3 +1,6 @@
+stestr
+os-testr
+mock
 python-subunit
 testrepository
 flexmock
