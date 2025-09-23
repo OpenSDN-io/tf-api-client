@@ -83,7 +83,7 @@ TEST_F(VncCfgTest, Decode) {
         cout << "Queue has element. Breaking." << endl;
         break;
     }
-    pugi::xml_parse_result result = xdoc_.load(msg.c_str());
+    pugi::xml_parse_result result = xdoc_.load_string(msg.c_str());
     EXPECT_TRUE(result);
 
     IFMapParser::RequestList requests;
