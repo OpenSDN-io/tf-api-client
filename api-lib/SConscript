@@ -116,7 +116,4 @@ if 'install' in BUILD_TARGETS:
     env.Depends(install_whl_cmd, sdist_depends)
     env.Alias('install', install_whl_cmd)
 
-env.Alias('install',
-    env.Install(env['INSTALL_CONF'], 'etc/contrail/vnc_api_lib.ini'))
-
 env.SetupPyTestSuiteWithDeps(sdist_gen, use_tox=True, sdist_depends=[])
