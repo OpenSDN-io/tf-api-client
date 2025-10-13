@@ -1,2 +1,5 @@
 *.pyc
 .vscode
+api-lib/vnc_api/gen/*
+api-lib/doc/source/contrail-config/*
+docbuild

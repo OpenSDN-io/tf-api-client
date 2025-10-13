@@ -667,7 +667,7 @@ class PyGenerator(object):
                                             break_long_words=False):
                     wrt('        %s\n\n' %(w_line))
 
-        wrt('    Attributes:\n')
+        wrt('    Attributes:\n\n')
         for child in self._PGenr.ElementDict[name].children:
             def get_doc_info(attrs):
                 doc_info = {}

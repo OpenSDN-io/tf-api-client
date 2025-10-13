@@ -2,118 +2,37 @@
 # Copyright (c) 2013 Juniper Networks, Inc. All rights reserved.
 #
 
-import os
-
-from SCons.Node.FS import Entry as entry_class
-from SCons.Node.FS import File as file_class
-from SCons.Node.FS import Dir as dir_class
-
 Import('BuildEnv')
 env = BuildEnv.Clone()
 
-cd_cmd = 'cd ' + Dir('.').path + ' && '
+base_path = Dir('#src/contrail-api-client/').abspath
+sdist_depends = []
 
-repo_top = env['api_repo_path']
-
-autogen_infra_sources = [
-    repo_top + '/generateds/generateDS.py',
-    repo_top + '/generateds/TypeGenerator.py',
-    repo_top + '/generateds/ccmap.py',
-    repo_top + '/generateds/idl_parser.py',
-    repo_top + '/generateds/ifmap_global.py',
-    repo_top + '/generateds/ifmap_model.py',
-    repo_top + '/generateds/ifmap_frontend.py',
-]
-
-autogen_sources = [
-    repo_top + '/schema/all_cfg.xsd',
-    repo_top + '/schema/vnc_cfg.xsd',
-    repo_top + '/schema/bgp_schema.xsd',
-    repo_top + '/schema/ietf-l3vpn-schema.xsd',
-    repo_top + '/schema/smi-base.xsd',
-]
-
-setup_sources = [
-    'doc',
-    'etc',
-    'vnc_api',
-    '.pylintrc',
-    '.stestr.conf',
-    'MANIFEST.in',
-    'README.md',
-    'requirements.txt',
-    'setup.cfg',
-    'setup.py',
-    'test-requirements.txt',
-    'tox.ini',
-]
-
-generated_yaml_schema_files = [Dir(env['TOP']).abspath + '/schema/yaml/base.yml']
 # Remove target files, to force scons to build SyncSchema always
-for tgt_file in generated_yaml_schema_files:
-    if os.path.exists(tgt_file):
-        os.remove(tgt_file)
-sync_yaml_schema = env.SyncSchema(generated_yaml_schema_files,
-                             repo_top + '/schema/all_cfg.xsd')
-setup_sources_rules = []
-for file in setup_sources:
-    entry = Entry(repo_top + '/api-lib/%s' % file)
-    path = Entry(repo_top + '/api-lib/%s' % file).abspath
-    if isinstance(entry, (entry_class, file_class)):
-        setup_sources_rules.append(env.Install(Dir('.'), entry))
-    elif isinstance(entry, dir_class):
-        setup_sources_rules.append(env.Install('vnc_api', Glob('%s/*' % path)))
+clean_yaml_schema = env.Command("rmdir_schema_yaml", None, Delete(base_path + '/schema/yaml'))
+sync_yaml_schema = env.SyncSchema([], base_path + '/schema/all_cfg.xsd')
+env.Depends(sync_yaml_schema, clean_yaml_schema)
+sdist_depends.extend(sync_yaml_schema)
 
-autogen_script = File(repo_top + '/generateds/generateDS.py').path
-autogen_cmd = '%s -f -o %s -g ifmap-frontend' % (
-    autogen_script, Dir('vnc_api/gen/resource').path)
-
-env.Append(ENV={'HEAT_BUILDTOP': Dir(env['TOP']).abspath})
-
-generated_files = ['vnc_api/gen/contrail_openapi.rst']
-generated_rule = env.Command(generated_files,
-                             repo_top + '/schema/all_cfg.xsd',
-                             autogen_cmd + ' $SOURCE')
-
-
-remote_setup_sources = [
-    ("", repo_top + '/LICENSE'),
-    ("", repo_top + '/base/version.info'),
-    ("vnc_api/gen", repo_top + '/generateds/generatedssuper.py'),
-    ("vnc_api/gen", repo_top + '/generateds/cfixture.py'),
-]
-remote_setup_sources_rules = []
-for dest, file in remote_setup_sources:
-    remote_setup_sources_rules.append(env.Install(dest, file))
-
-doc_sources_rules = SConscript(dirs=['doc'], exports='BuildEnv')
-
-sdist_depends = [remote_setup_sources_rules]
-sdist_depends.extend(generated_rule)
-sdist_depends.extend(setup_sources_rules)
-sdist_depends.extend(doc_sources_rules)
-
-sdist_gen = env.Command('dist/contrail-api-client-0.1.dev0.tar.gz',
-                        'setup.py', cd_cmd + 'python3 setup.py sdist')
-
-env.Default(sdist_gen)
-
-# generated files depend on autogeneration infra parts
-env.Depends(autogen_infra_sources, remote_setup_sources_rules)
-env.Depends(generated_rule, [autogen_infra_sources, autogen_sources])
-env.Depends(setup_sources_rules, autogen_infra_sources)
-
-# install everything before building distribution
-env.Depends(sdist_gen, [sync_yaml_schema, sdist_depends])
-
-def SymLink(target, source, env):
-    os.symlink(os.path.abspath(str(source[0])), os.path.abspath(str(target[0])))
+code_gen_rule = env.Command(
+    None, base_path + '/code_generate.sh',
+    base_path + '/code_generate.sh')
+sdist_depends.extend(code_gen_rule)
+env.AlwaysBuild(code_gen_rule)
 
 if 'install' in BUILD_TARGETS:
-    install_whl_cmd = env.Command(
-        None, 'setup.py',
-        cd_cmd + 'python3 setup.py bdist_wheel --dist-dir /pip')
-    env.Depends(install_whl_cmd, sdist_depends)
-    env.Alias('install', install_whl_cmd)
+    html_gen_rule = env.Command(
+        None, base_path + '/docs_generate.sh',
+        base_path + '/docs_generate.sh "' + Dir('%s/contrail-config/doc/' % env['INSTALL_DOC']).abspath + '"')
+    env.Depends(html_gen_rule, code_gen_rule)
+    sdist_depends.extend(html_gen_rule)
+    env.AlwaysBuild(html_gen_rule)
+    env.Alias('install', html_gen_rule)
 
-env.SetupPyTestSuiteWithDeps(sdist_gen, use_tox=True, sdist_depends=[])
+sdist_gen = env.Command(
+    '/pip/contrail_api_client-0.1.dev0-py3-none-any.whl', 'setup.py',
+    'cd ' + base_path + '/api-lib' + ' && ' + 'python3 setup.py bdist_wheel --dist-dir /pip')
+env.Depends(sdist_gen, sdist_depends)
+env.Alias('install', sdist_gen)
+
+env.SetupPyTestSuiteWithDeps(sdist_gen, top_dir="#src/contrail-api-client/api-lib")

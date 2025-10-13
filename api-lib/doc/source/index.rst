@@ -43,7 +43,6 @@ This document provides:
    library_details.rst
    library_reference.rst
    contrail_openapi.rst
-   .. modules.rst
 
 Indices and tables
 ==================
