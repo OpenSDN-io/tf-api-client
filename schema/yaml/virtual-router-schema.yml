@@ -50,6 +50,14 @@ schema:
       operations: CRUD
       presence: optional
       wrapper: true
+    virtual_router_tracebuffer_length:
+      $ref: types.json#/definitions/KeyValuePairs
+      collectionType: map
+      description: A list of custom lengths for the virtual router trace buffers.
+      mapKey: key
+      operations: CRUD
+      presence: optional
+      wrapper: true
     virtual_router_type:
       $ref: types.json#/definitions/VirtualRouterType
       description: Different types of the vrouters in the system.

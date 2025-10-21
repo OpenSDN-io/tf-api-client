@@ -2707,6 +2707,11 @@ targetNamespace="http://www.contrailsystems.com/2012/VNC-CONFIG/0">
      Property('virtual-router-ip-address', 'virtual-router' , 'required', 'CRUD',
               'Ip address of the virtual router.') -->
 
+<xsd:element name="virtual-router-tracebuffer-length" type="KeyValuePairs"/>
+<!--#IFMAP-SEMANTICS-IDL
+     MapProperty('virtual-router-tracebuffer-length', 'virtual-router' , 'key', 'optional', 'CRUD',
+                'A list of custom lengths for the virtual router trace buffers.') -->
+
 <xsd:element name="virtual-router-sub-cluster"/>
 <!--#IFMAP-SEMANTICS-IDL
      Link('virtual-router-sub-cluster',
