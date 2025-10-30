@@ -29,8 +29,11 @@ if 'install' in BUILD_TARGETS:
     env.AlwaysBuild(html_gen_rule)
     env.Alias('install', html_gen_rule)
 
+sources = ['setup.py', 'requirements.txt']
+sources += env.AddPythonSources('vnc_api', excludes=['gen'])
+
 sdist_gen = env.Command(
-    '/pip/contrail_api_client-0.1.dev0-py3-none-any.whl', 'setup.py',
+    '/pip/contrail_api_client-0.1.dev0-py3-none-any.whl', sources,
     'cd ' + base_path + '/api-lib' + ' && ' + 'python3 setup.py bdist_wheel --dist-dir /pip')
 env.Depends(sdist_gen, sdist_depends)
 env.Alias('install', sdist_gen)
