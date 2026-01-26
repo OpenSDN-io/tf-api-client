@@ -3924,6 +3924,10 @@ definitions:
     - vrouter
     - network-device
     type: string
+  TimerIntervalType:
+    maximum: 4294967296
+    minimum: 0
+    type: integer
   TimerType:
     properties:
       end_time:
