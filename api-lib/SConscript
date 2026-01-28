@@ -8,11 +8,11 @@ env = BuildEnv.Clone()
 base_path = Dir('#src/contrail-api-client/').abspath
 sdist_depends = []
 
-# Remove target files, to force scons to build SyncSchema always
-clean_yaml_schema = env.Command("rmdir_schema_yaml", None, Delete(base_path + '/schema/yaml'))
-sync_yaml_schema = env.SyncSchema([], base_path + '/schema/all_cfg.xsd')
-env.Depends(sync_yaml_schema, clean_yaml_schema)
-sdist_depends.extend(sync_yaml_schema)
+schema_gen_rule = env.Command(
+    None, base_path + '/schema_generate.sh',
+    base_path + '/schema_generate.sh check_fail')
+sdist_depends.extend(schema_gen_rule)
+env.AlwaysBuild(schema_gen_rule)
 
 code_gen_rule = env.Command(
     None, base_path + '/code_generate.sh',
