@@ -78,6 +78,12 @@ bool %s::JsonParse(const contrail_rapidjson::Value &parent) {
                       'if (!ParseInteger(value_node[i], &var)) return false;\n')
                     file.write(indent1 + '%s.push_back(var);\n' %
                                member.membername)
+                elif member.sequenceType == 'uint64_t':
+                    file.write(indent1 + 'uint64_t var;\n')
+                    file.write(indent1 +
+                      'if (!ParseUnsignedLong(value_node[i], &var)) return false;\n')
+                    file.write(indent1 + '%s.push_back(var);\n' %
+                               member.membername)
                 else:
                     file.write(indent + '// TODO: sequence of ' +
                                member.sequenceType)
@@ -152,6 +158,13 @@ bool %s::XmlParse(const xml_node &parent) {
                     item = """
             int var;
             if (!ParseInteger(node, &var)) return false;
+            %s.push_back(var);
+""" % member.membername
+                    file.write(item)
+                elif member.sequenceType == 'uint64_t':
+                    item = """
+            uint64_t var;
+            if (!ParseUnsignedLong(node, &var)) return false;
             %s.push_back(var);
 """ % member.membername
                     file.write(item)

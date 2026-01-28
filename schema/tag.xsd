@@ -25,16 +25,26 @@
         </xsd:union>
     </xsd:simpleType>
 
+    <xsd:simpleType name="U64BitHexInt">
+        <xsd:union memberTypes="xsd:unsignedLong">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                    <xsd:pattern value="0x[0-9A-Fa-f]{12}"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:union>
+    </xsd:simpleType>
+
     <xsd:simpleType name="TagValueRangeType">
         <xsd:annotation>
             <xsd:documentation>
                 Min and Max values to be used for generation of Tag id
-                Default Min and Max are 0, 2^16-1
+                Default Min and Max are 0, 2^32-1
             </xsd:documentation>
         </xsd:annotation>
-        <xsd:restriction base="xsd:integer">
+        <xsd:restriction base="xsd:unsignedLong">
             <xsd:minInclusive value="0"/>
-            <xsd:maxInclusive value="65535"/>
+            <xsd:maxInclusive value="4294967295"/>
         </xsd:restriction>
     </xsd:simpleType>
     <!-- <xsd:element name="tag-value-range" type="TagTypeValueRangeType"/> -->
@@ -69,11 +79,11 @@
     <!--#IFMAP-SEMANTICS-IDL
          Property('tag-predefined', 'tag', 'optional', 'CR',
                  'Tag delete boolean representation') -->
-    <xsd:element name="tag-id" type="U32BitHexInt"/>
+    <xsd:element name="tag-id" type="U64BitHexInt"/>
     <!--#IFMAP-SEMANTICS-IDL
         Property('tag-id', 'tag', 'optional', 'R',
                  'Internal Tag ID encapsulating tag type and value in
-                  hexadecimal fomat: 0xTTTTVVVV (T: type, V: value)') -->
+                  hexadecimal fomat: 0xTTTTVVVVVVVV (T: type, V: value)') -->
     <xsd:element name="config-root-tag"/>
     <!--#IFMAP-SEMANTICS-IDL
         Link('config-root-tag', 'config-root', 'tag', ['has'], 'optional', 'CRUD',

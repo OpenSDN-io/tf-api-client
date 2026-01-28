@@ -44,7 +44,7 @@
              description='Any workload with interface in this address-group'/>
     <xsd:element name="tags"            type="xsd:string"  maxOccurs="unbounded" required='exclusive'
              description='Any workload with tags matching tags in this list'/>
-    <xsd:element name="tag-ids"         type="xsd:integer"  maxOccurs="unbounded"
+    <xsd:element name="tag-ids"         type="xsd:unsignedLong"  maxOccurs="unbounded"
              description='Any workload with tags ids matching all the tags ids in this list'/>
     <xsd:element name="any"             type="xsd:boolean"  required='exclusive'
              description='Match any workload'/>

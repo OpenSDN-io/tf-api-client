@@ -49,9 +49,11 @@ class ContrailJsonSchemaGenerator(object):
     def _getJSDataType(self, type):
         if type.lower() in ("string", "xsd:string"):
             return "string"
-        elif type.lower() in ("integer", "int", "long", "xsd:integer",
-                              "xsd:unsignedint", "xsd:unsignedlong"):
+        elif type.lower() in ("integer", "int", "xsd:integer",
+                              "xsd:unsignedint"):
             return "integer"
+        elif type.lower() in ("long", "xsd:unsignedlong"):
+            return "unsignedLong"
         elif (type.lower() == "number"):
             return "number"
         elif type.lower() in ("boolean", "bool", "xsd:boolean"):
@@ -196,8 +198,10 @@ class ContrailJsonSchemaGenerator(object):
         ret = {}
         if type in ("string", "xsd:string"):
             ret["type"] = "string"
-        elif type in ("xsd:integer", "xsd:unsignedInt", "xsd:unsignedLong"):
+        elif type in ("xsd:integer", "xsd:unsignedInt"):
             ret["type"] = "integer"
+        elif type in ("xsd:unsignedLong"):
+            ret["type"] = "unsignedLong"
         elif (type == "xsd:boolean"):
             ret["type"] = "boolean"
         elif (type.lower().startswith("list")):

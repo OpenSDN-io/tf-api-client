@@ -19,7 +19,7 @@ xsd:targetNamespace="http://www.contrailsystems.com/bgp-l3vpn-unicast-cfg.xsd">
 </xsd:complexType>
 
 <xsd:complexType name="TagListType">
-     <xsd:element name="tag" type="xsd:integer" maxOccurs="unbounded"/>
+     <xsd:element name="tag" type="xsd:unsignedLong" maxOccurs="unbounded"/>
 </xsd:complexType>
 
 <xsd:complexType name="NextHopType">
