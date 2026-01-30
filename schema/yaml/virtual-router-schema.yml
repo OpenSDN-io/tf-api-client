@@ -29,6 +29,18 @@ references:
     presence: optional
 schema:
   properties:
+    agent_uve_default_interval:
+      $ref: types.json#/definitions/TimerIntervalType
+      description: A time interval (in ms) between two dispatches of an agent's information
+        to UVE.
+      operations: CRUD
+      presence: optional
+    agent_uve_incremental_interval:
+      $ref: types.json#/definitions/TimerIntervalType
+      description: A time interval (in ms) between dispatches of an agent's information
+        and its remnant to UVE.
+      operations: CRUD
+      presence: optional
     virtual_router_dpdk_enabled:
       description: This vrouter's data path is using DPDK library, Virtual machines
         interfaces scheduled on this compute node will be tagged with additional flags
