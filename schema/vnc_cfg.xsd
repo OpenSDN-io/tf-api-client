@@ -2722,12 +2722,17 @@ targetNamespace="http://www.contrailsystems.com/2012/VNC-CONFIG/0">
 <xsd:element name="agent-uve-default-interval" type="TimerIntervalType"/>
 <!--#IFMAP-SEMANTICS-IDL
      Property('agent-uve-default-interval', 'virtual-router', 'optional', 'CRUD',
-                'A time interval (in ms) between two dispatches of an agent\'s information to UVE.') -->
+                'A time interval (in ms) between two probes of an agent\'s information for UVE.') -->
 
 <xsd:element name="agent-uve-incremental-interval" type="TimerIntervalType"/>
 <!--#IFMAP-SEMANTICS-IDL
      Property('agent-uve-incremental-interval', 'virtual-router', 'optional', 'CRUD',
-                'A time interval (in ms) between dispatches of an agent\'s information and its remnant to UVE.') -->
+                'A time interval (in ms) between probes of an agent\'s information and its remnant for UVE.') -->
+
+<xsd:element name="agent-stats-collector-interval" type="TimerIntervalType"/>
+<!--#IFMAP-SEMANTICS-IDL
+     Property('agent-stats-collector-interval', 'virtual-router', 'optional', 'CRUD',
+                'A time interval (in ms) between two dispatches of an agent\'s statistics to UVE.') -->
 
 <xsd:element name="virtual-router-sub-cluster"/>
 <!--#IFMAP-SEMANTICS-IDL

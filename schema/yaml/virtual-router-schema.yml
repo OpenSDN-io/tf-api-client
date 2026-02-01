@@ -29,16 +29,22 @@ references:
     presence: optional
 schema:
   properties:
+    agent_stats_collector_interval:
+      $ref: types.json#/definitions/TimerIntervalType
+      description: A time interval (in ms) between two dispatches of an agent's statistics
+        to UVE.
+      operations: CRUD
+      presence: optional
     agent_uve_default_interval:
       $ref: types.json#/definitions/TimerIntervalType
-      description: A time interval (in ms) between two dispatches of an agent's information
-        to UVE.
+      description: A time interval (in ms) between two probes of an agent's information
+        for UVE.
       operations: CRUD
       presence: optional
     agent_uve_incremental_interval:
       $ref: types.json#/definitions/TimerIntervalType
-      description: A time interval (in ms) between dispatches of an agent's information
-        and its remnant to UVE.
+      description: A time interval (in ms) between probes of an agent's information
+        and its remnant for UVE.
       operations: CRUD
       presence: optional
     virtual_router_dpdk_enabled:
