@@ -295,7 +295,8 @@ TEST_F(QueryTest, Encode_NextHopType) {
 }
 
 int main(int argc, char **argv) {
-    LoggingInit();
+    Logging logging;
+    logging.Init();
     ::testing::InitGoogleTest(&argc, argv);
 
     return RUN_ALL_TESTS();
