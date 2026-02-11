@@ -3,7 +3,7 @@
  */
 
 #include "schema/vnc_cfg_types.h"
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/algorithm/string.hpp>
 #include <boost/format.hpp>
 #include <tbb/concurrent_queue.h>
@@ -22,6 +22,7 @@
 #include "ifmap/client/ifmap_mgr.h"
 
 using namespace std;
+using namespace boost::placeholders;
 
 class VncCfgTest : public ::testing::Test {
 public:

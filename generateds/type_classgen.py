@@ -199,12 +199,13 @@ void %s::CalculateCrc(boost::crc_32_type *crc) const {
 #define __SCHEMA__%(modname)s_TYPES_H__
 #include "%(hdrname)s"
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include "ifmap/autogen.h"
 
 #include <pugixml/pugixml.hpp>
 
 using namespace std;
+using namespace boost::placeholders;
 
 namespace autogen {
 """ % {'modname': module_name.upper(), 'hdrname': hdrname }
