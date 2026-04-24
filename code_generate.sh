@@ -13,3 +13,5 @@ cp $my_dir/generateds/cfixture.py $gen_dir/
 
 export PYTHONPATH=$my_dir/api-lib
 generateds/generateDS.py -f -o "$gen_dir/resource" -g ifmap-frontend "$my_dir/schema/all_cfg.xsd"
+
+echo "INFO: code has been generated"

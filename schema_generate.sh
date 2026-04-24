@@ -10,6 +10,8 @@ mkdir -p $gen_dir
 export PYTHONPATH=$my_dir/api-lib
 generateds/generateDS.py -f -o "$gen_dir" -g contrail-json-schema "$my_dir/schema/all_cfg.xsd"
 
+echo "INFO: shema has been generated"
+
 # check generated schemas for differencies in git to fail build and push user to update yaml files
 if [[ "$1" != "check_fail" ]]; then
   exit

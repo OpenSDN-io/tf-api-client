@@ -26,3 +26,5 @@ if [[ -n "$target" ]]; then
     mkdir -p $target
     cp -r $doc_build_dir/source $target/
 fi
+
+echo "INFO: documentation has been generated"
