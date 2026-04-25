@@ -20,7 +20,7 @@ xsd:targetNamespace="http://www.contrailsystems.com/xmpp-enet-cfg.xsd">
 </xsd:complexType> 
 
 <xsd:complexType name="EnetTagListType">
-     <xsd:element name="tag" type="xsd:integer" maxOccurs="unbounded"/>
+     <xsd:element name="tag" type="xsd:unsignedLong" maxOccurs="unbounded"/>
 </xsd:complexType>
 
 <xsd:complexType name="EnetNextHopType">

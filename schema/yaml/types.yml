@@ -1282,7 +1282,7 @@ definitions:
         description: Any workload with tags ids matching all the tags ids in this
           list
         items:
-          type: integer
+          type: unsignedLong
         type: array
       tags:
         description: Any workload with tags matching tags in this list
@@ -3954,7 +3954,7 @@ definitions:
     type: string
   U16BitHexInt:
     type: string
-  U32BitHexInt:
+  U64BitHexInt:
     type: string
   UniqueQuotaType:
     maximum: 1
@@ -3990,9 +3990,9 @@ definitions:
   UuidType:
     properties:
       uuid_lslong:
-        type: integer
+        type: unsignedLong
       uuid_mslong:
-        type: integer
+        type: unsignedLong
     type: object
   UveKeysType:
     properties:
